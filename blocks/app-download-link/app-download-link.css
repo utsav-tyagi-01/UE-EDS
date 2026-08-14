@@ -1,0 +1,91 @@
+.app-download-link-block {
+  position: relative;
+  color: #fff;
+  background-color: #000;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding: 40px 10px;
+}
+
+.app-download-link-block .adl-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.app-download-link-block .adl-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.app-download-link-block .adl-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.app-download-link-block .adl-icon img {
+  max-width: 260px;
+  height: auto;
+}
+
+.app-download-link-block .adl-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.app-download-link-block .adl-subtitle {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.app-download-link-block .adl-badges {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.app-download-link-block .adl-badge {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.app-download-link-block .adl-badge img {
+  height: 48px;
+  width: auto;
+  display: block;
+}
+
+/* Mobile */
+@media only screen and (width <= 767px) {
+  .app-download-link-block {
+    padding: 24px 10px;
+  }
+
+  .app-download-link-block .adl-title {
+    font-size: 1.3rem;
+    margin-bottom: 16px;
+  }
+
+  .app-download-link-block .adl-content {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .app-download-link-block .adl-icon img {
+    max-width: 200px;
+  }
+
+  .app-download-link-block .adl-subtitle {
+    font-size: 1.2rem;
+  }
+}

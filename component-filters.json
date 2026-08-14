@@ -19,6 +19,12 @@
     ]
   },
   {
+    "id": "app-download-link",
+    "components": [
+      "app-link-item"
+    ]
+  },
+  {
     "id": "cards",
     "components": [
       "card"
