@@ -304,6 +304,102 @@
     ]
   },
   {
+    "id": "header",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "navPath",
+        "label": "Navigation Fragment",
+        "description": "Path to the nav fragment (e.g. /nav) that supplies logo, sections and tools",
+        "multi": false
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "logoImage",
+        "label": "Logo Image"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "logoAlt",
+        "label": "Logo Alt Text",
+        "value": "Kia Motors"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "logoLink",
+        "label": "Logo Link",
+        "value": "/in/home.html"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "ctaLabel",
+        "label": "Primary CTA Label",
+        "value": "Find a Dealer"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "ctaLink",
+        "label": "Primary CTA Link",
+        "value": "/in/buy/find-a-dealer.html"
+      }
+    ]
+  },
+  {
+    "id": "nav-item",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Label",
+        "value": "Cars"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "link",
+        "label": "Link"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "teaserImage",
+        "label": "Dropdown Teaser Image"
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "hasDropdown",
+        "label": "Has Dropdown Menu",
+        "value": true
+      }
+    ]
+  },
+  {
+    "id": "nav-sub-item",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Label",
+        "value": "SONET"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "link",
+        "label": "Link"
+      }
+    ]
+  },
+  {
     "id": "hero",
     "fields": [
       {

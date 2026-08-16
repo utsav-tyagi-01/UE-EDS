@@ -42,5 +42,17 @@
       "button",
       "title"
     ]
+  },
+  {
+    "id": "header",
+    "components": [
+      "nav-item"
+    ]
+  },
+  {
+    "id": "nav-item",
+    "components": [
+      "nav-sub-item"
+    ]
   }
 ]

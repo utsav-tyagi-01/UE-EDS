@@ -1,82 +1,57 @@
-/* header and nav layout */
+:root {
+  --kia-header-height: 64px;
+  --kia-nav-bg: #05141f;
+  --kia-nav-text: #ffffff;
+  --kia-accent: #bb162b;
+  --kia-dropdown-bg: #ffffff;
+  --kia-dropdown-text: #05141f;
+}
+
 header .nav-wrapper {
-  background-color: var(--background-color);
-  width: 100%;
-  z-index: 2;
+  background-color: var(--kia-nav-bg);
   position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
 }
 
 header nav {
   box-sizing: border-box;
   display: grid;
   grid-template:
-    'hamburger brand tools' var(--nav-height)
-    'sections sections sections' 1fr / auto 1fr auto;
+    'hamburger brand tools' var(--kia-header-height)
+    'sections sections sections' auto / auto 1fr auto;
   align-items: center;
   gap: 0 24px;
+  max-width: 1440px;
   margin: auto;
-  max-width: 1248px;
-  height: var(--nav-height);
-  padding: 0 24px;
-  font-family: var(--body-font-family);
+  padding: 0 16px;
 }
 
 header nav[aria-expanded='true'] {
   grid-template:
-    'hamburger brand' var(--nav-height)
-    'sections sections' 1fr
-    'tools tools' var(--nav-height) / auto 1fr;
+    'hamburger brand tools' var(--kia-header-height)
+    'sections sections sections' auto / auto 1fr auto;
   overflow-y: auto;
   min-height: 100dvh;
-}
-
-@media (width >= 900px) {
-  header .nav-wrapper {
-    position: relative;
-  }
-
-  header nav {
-    display: flex;
-    justify-content: space-between;
-    gap: 0 32px;
-    max-width: 1264px;
-    padding: 0 32px;
-  }
-
-  header nav[aria-expanded='true'] {
-    min-height: 0;
-    overflow: visible;
-  }
-}
-
-header nav p {
-  margin: 0;
-  line-height: 1;
-}
-
-header nav a:any-link {
-  color: currentcolor;
 }
 
 /* hamburger */
 header nav .nav-hamburger {
   grid-area: hamburger;
-  height: 22px;
   display: flex;
   align-items: center;
 }
 
 header nav .nav-hamburger button {
-  height: 22px;
-  margin: 0;
+  height: 32px;
+  width: 32px;
+  background: transparent;
   border: 0;
-  border-radius: 0;
+  cursor: pointer;
   padding: 0;
-  background-color: var(--background-color);
-  color: inherit;
-  overflow: initial;
-  text-overflow: initial;
-  white-space: initial;
+  position: relative;
 }
 
 header nav .nav-hamburger-icon,
@@ -84,189 +59,251 @@ header nav .nav-hamburger-icon::before,
 header nav .nav-hamburger-icon::after {
   box-sizing: border-box;
   display: block;
-  position: relative;
-  width: 20px;
-}
-
-header nav .nav-hamburger-icon::before,
-header nav .nav-hamburger-icon::after {
-  content: '';
   position: absolute;
-  background: currentcolor;
-}
-
-header nav[aria-expanded='false'] .nav-hamburger-icon,
-header nav[aria-expanded='false'] .nav-hamburger-icon::before,
-header nav[aria-expanded='false'] .nav-hamburger-icon::after {
+  width: 22px;
   height: 2px;
-  border-radius: 2px;
-  background: currentcolor;
+  background: var(--kia-nav-text);
+  left: 5px;
+  transition: transform .2s, top .2s;
 }
 
-header nav[aria-expanded='false'] .nav-hamburger-icon::before {
-  top: -6px;
-}
+header nav .nav-hamburger-icon::before { content: ''; top: -7px; }
+header nav .nav-hamburger-icon::after { content: ''; top: 7px; }
 
-header nav[aria-expanded='false'] .nav-hamburger-icon::after {
-  top: 6px;
-}
+header nav[aria-expanded='true'] .nav-hamburger-icon { background: transparent; }
+header nav[aria-expanded='true'] .nav-hamburger-icon::before { top: 0; transform: rotate(45deg); }
+header nav[aria-expanded='true'] .nav-hamburger-icon::after { top: 0; transform: rotate(-45deg); }
 
-header nav[aria-expanded='true'] .nav-hamburger-icon {
-  height: 22px;
-}
-
-header nav[aria-expanded='true'] .nav-hamburger-icon::before,
-header nav[aria-expanded='true'] .nav-hamburger-icon::after {
-  top: 3px;
-  left: 1px;
-  transform: rotate(45deg);
-  transform-origin: 2px 1px;
-  width: 24px;
-  height: 2px;
-  border-radius: 2px;
-}
-
-header nav[aria-expanded='true'] .nav-hamburger-icon::after {
-  top: unset;
-  bottom: 3px;
-  transform: rotate(-45deg);
-}
-
-@media (width >= 900px) {
-  header nav .nav-hamburger {
-    display: none;
-    visibility: hidden;
-  }
-}
-
-/* brand */
-header .nav-brand {
+/* brand / logo */
+header nav .nav-brand {
   grid-area: brand;
   flex-basis: 128px;
-  font-size: var(--heading-font-size-s);
-  font-weight: 700;
-  line-height: 1;
+  font-size: 0;
 }
 
-header nav .nav-brand img {
-  width: 128px;
-  height: auto;
+header nav .nav-brand .brand-link {
+  display: inline-flex;
+  align-items: center;
+  height: var(--kia-header-height);
 }
 
-/* sections */
+header nav .nav-brand img,
+header nav .nav-brand svg {
+  height: 24px;
+  width: auto;
+}
+
+/* sections / nav links */
 header nav .nav-sections {
   grid-area: sections;
-  flex: 1 1 auto;
   display: none;
-  visibility: hidden;
 }
 
 header nav[aria-expanded='true'] .nav-sections {
   display: block;
-  visibility: visible;
   align-self: start;
 }
 
-header nav .nav-sections ul {
+header nav .nav-sections .default-content-wrapper > ul {
   list-style: none;
-  padding-left: 0;
-  font-size: var(--body-font-size-s);
+  margin: 0;
+  padding: 0;
 }
 
-header nav .nav-sections ul > li {
-  font-weight: 500;
+header nav .nav-sections .default-content-wrapper > ul > li {
+  border-bottom: 1px solid rgb(255 255 255 / 10%);
 }
 
-header nav .nav-sections ul > li > ul {
-  margin-top: 0;
+header nav .nav-sections .default-content-wrapper > ul > li > a,
+header nav .nav-sections .default-content-wrapper > ul > li > span.nav-drop-label {
+  display: block;
+  padding: 16px 4px;
+  color: var(--kia-nav-text);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: .02em;
 }
 
-header nav .nav-sections ul > li > ul > li {
-  font-weight: 400;
+header nav .nav-sections .default-content-wrapper > ul > li.nav-drop {
+  position: relative;
+  cursor: pointer;
 }
 
-@media (width >= 900px) {
+header nav .nav-sections .default-content-wrapper > ul > li.nav-drop::after {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--kia-nav-text);
+  border-bottom: 2px solid var(--kia-nav-text);
+  transform: rotate(45deg);
+  float: right;
+  margin-top: 6px;
+  transition: transform .2s;
+}
+
+header nav .nav-sections .default-content-wrapper > ul > li.nav-drop[aria-expanded='true']::after {
+  transform: rotate(-135deg);
+  margin-top: 10px;
+}
+
+/* mega dropdown panel (2nd level ul) */
+header nav .nav-sections .default-content-wrapper > ul > li.nav-drop > ul {
+  list-style: none;
+  margin: 0;
+  padding: 8px 0 16px;
+  display: none;
+}
+
+header nav .nav-sections .default-content-wrapper > ul > li.nav-drop[aria-expanded='true'] > ul {
+  display: block;
+}
+
+header nav .nav-sections .default-content-wrapper > ul > li.nav-drop > ul > li > a {
+  display: block;
+  padding: 10px 8px;
+  color: rgb(255 255 255 / 80%);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+header nav .nav-sections .default-content-wrapper > ul > li.nav-drop > ul > li > a:hover {
+  color: var(--kia-accent);
+}
+
+/* image teaser at top of a mega menu, when the first list item wraps a picture */
+header nav .nav-sections picture {
+  display: block;
+  margin: 0 0 12px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+header nav .nav-sections picture img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* nested sub-lists (e.g. Owners > Service and Maintenance > Warranty) */
+header nav .nav-sections ul ul {
+  list-style: none;
+  margin: 4px 0 4px 12px;
+  padding: 0;
+  border-left: 1px solid rgb(255 255 255 / 15%);
+}
+
+header nav .nav-sections ul ul li a {
+  font-size: 13px;
+  padding: 6px 8px;
+  color: rgb(255 255 255 / 60%);
+}
+
+/* tools (find a dealer CTA, search, account) */
+header nav .nav-tools {
+  grid-area: tools;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+header nav .nav-tools ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+header nav .nav-tools a {
+  color: var(--kia-nav-text);
+  text-decoration: none;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+header nav .nav-tools a.button,
+header nav .nav-tools a[href*='find-a-dealer'] {
+  background: var(--kia-accent);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 2px;
+  font-weight: 600;
+}
+
+/* body offset so fixed header doesn't overlap content */
+body {
+  padding-top: var(--kia-header-height);
+}
+
+/* desktop layout */
+@media (min-width: 1024px) {
+  header nav {
+    grid-template:
+      'brand sections tools' var(--kia-header-height) / auto 1fr auto;
+    gap: 0 32px;
+  }
+
+  header nav .nav-hamburger {
+    display: none;
+  }
+
   header nav .nav-sections {
-    display: block;
-    visibility: visible;
-    white-space: nowrap;
+    display: block !important;
+    align-self: stretch;
   }
 
-  header nav[aria-expanded='true'] .nav-sections {
-    align-self: unset;
-  }
-
-  header nav .nav-sections .nav-drop {
-    position: relative;
-    padding-right: 16px;
-    cursor: pointer;
-  }
-
-  header nav .nav-sections .nav-drop::after {
-    content: '';
-    display: inline-block;
-    position: absolute;
-    top: 0.5em;
-    right: 2px;
-    transform: rotate(135deg);
-    width: 6px;
-    height: 6px;
-    border: 2px solid currentcolor;
-    border-radius: 0 1px 0 0;
-    border-width: 2px 2px 0 0;
-  }
-
-  header nav .nav-sections .nav-drop[aria-expanded='true']::after {
-    top: unset;
-    bottom: 0.5em;
-    transform: rotate(315deg);
-  }
-
-  header nav .nav-sections ul {
+  header nav .nav-sections .default-content-wrapper > ul {
     display: flex;
-    gap: 24px;
-    margin: 0;
+    align-items: center;
+    height: 100%;
+    gap: 28px;
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li {
-    flex: 0 1 auto;
-    position: relative;
+    border-bottom: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li > ul {
-    display: none;
-    position: relative;
+  header nav .nav-sections .default-content-wrapper > ul > li > a,
+  header nav .nav-sections .default-content-wrapper > ul > li > span.nav-drop-label {
+    padding: 0;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li[aria-expanded='true'] > ul {
-    display: block;
+  header nav .nav-sections .default-content-wrapper > ul > li.nav-drop::after {
+    float: none;
+    margin: 0 0 0 6px;
+  }
+
+  header nav .nav-sections .default-content-wrapper > ul > li.nav-drop > ul {
     position: absolute;
-    left: -24px;
-    width: 200px;
-    top: 150%;
-    padding: 16px;
-    background-color: var(--light-color);
-    white-space: initial;
+    top: var(--kia-header-height);
+    left: 0;
+    min-width: 260px;
+    background: var(--kia-dropdown-bg);
+    box-shadow: 0 8px 24px rgb(0 0 0 / 15%);
+    padding: 20px;
+    border-radius: 0 0 4px 4px;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li > ul::before {
-    content: '';
-    position: absolute;
-    top: -8px;
-    left: 16px;
-    width: 0;
-    height: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 8px solid var(--light-color);
+  header nav .nav-sections .default-content-wrapper > ul > li.nav-drop > ul > li > a {
+    color: var(--kia-dropdown-text);
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li > ul > li {
-    padding: 8px 0;
+  header nav .nav-sections ul ul {
+    border-left-color: rgb(0 0 0 / 10%);
   }
-}
 
-/* tools */
-header nav .nav-tools {
-  grid-area: tools;
+  header nav .nav-sections ul ul li a {
+    color: rgb(0 0 0 / 60%);
+  }
+
+  header nav[aria-expanded='true'] {
+    min-height: 0;
+    overflow-y: visible;
+  }
 }
