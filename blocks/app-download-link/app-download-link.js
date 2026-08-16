@@ -1,13 +1,40 @@
+function getPicture(row) {
+  if (!row) return null;
+  const existing = row.querySelector('picture');
+  if (existing) return existing;
+
+  const img = row.querySelector('img');
+  if (!img) return null;
+
+  const picture = document.createElement('picture');
+  picture.append(img);
+  return picture;
+}
+
+function getHref(row) {
+  if (!row) return '';
+  const anchor = row.querySelector('a');
+  if (anchor?.getAttribute('href')) return anchor.getAttribute('href');
+
+  const text = row.textContent.trim();
+  if (!text) return '';
+  return /^https?:\/\//i.test(text) ? text : `https://${text}`;
+}
+
+function getLabel(row) {
+  return row ? row.textContent.trim() : '';
+}
+
 export default function decorate(block) {
   const rows = [...block.children];
 
-  // Fixed row order authored in the block table:
+  // Fixed row order authored in the block table, one field per row:
   // 1. Background image (optional)
   // 2. Phone mockup image
   // 3. Title text
   // 4. Feature banner image
   // 5. Subtitle text
-  // 6-9. Up to 4 store badge rows, each: [image cell, link cell]
+  // 6+. Up to 4 store badges, each as 3 consecutive rows: image, link, label
   const [bgRow, phoneRow, titleRow, iconRow, subtitleRow, ...badgeRows] = rows;
 
   // 1. Optional section background image -> block background, discard row
@@ -53,16 +80,18 @@ export default function decorate(block) {
     linksWrap.append(subtitleRow);
   }
 
-  // 3. Up to 4 store badges — each row has an image cell and a link cell
+  // 3. Up to 4 store badges — each badge is 3 rows: image, link, label
   const badgeContainer = document.createElement('div');
   badgeContainer.className = 'adl-badges';
 
-  badgeRows.forEach((row) => {
-    const picture = row.querySelector('picture');
-    const link = row.querySelector('a');
+  for (let i = 0; i < badgeRows.length; i += 3) {
+    const [imgRow, linkRow, labelRow] = badgeRows.slice(i, i + 3);
+
+    const picture = getPicture(imgRow);
+    const href = getHref(linkRow);
 
     // Skip empty/unfilled badge slots (author left 3rd/4th badge blank)
-    if (!picture || !link) return;
+    if (!picture || !href) continue;
 
     const img = picture.querySelector('img');
     if (img) {
@@ -71,13 +100,13 @@ export default function decorate(block) {
 
     const badge = document.createElement('a');
     badge.className = 'adl-badge';
-    badge.href = link.href;
+    badge.href = href;
     badge.target = '_blank';
     badge.rel = 'noopener noreferrer';
-    badge.setAttribute('aria-label', link.textContent.trim() || 'Download app');
+    badge.setAttribute('aria-label', getLabel(labelRow) || 'Download app');
     badge.append(picture);
     badgeContainer.append(badge);
-  });
+  }
 
   linksWrap.append(badgeContainer);
   body.append(linksWrap);
