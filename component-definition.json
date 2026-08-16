@@ -98,21 +98,6 @@
           }
         },
         {
-          "title": "App Link Item",
-          "id": "app-link-item",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block/item",
-                "template": {
-                  "name": "App Link Item",
-                  "model": "app-link-item"
-                }
-              }
-            }
-          }
-        },
-        {
           "title": "Cards",
           "id": "cards",
           "plugins": {

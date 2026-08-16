@@ -176,30 +176,82 @@
         "valueType": "string",
         "name": "subTitleText",
         "label": "Sub Title Text"
-      }
-    ]
-  },
-  {
-    "id": "app-link-item",
-    "fields": [
+      },
       {
         "component": "reference",
         "valueType": "string",
-        "name": "storeImage",
-        "label": "Store Badge Image",
+        "name": "storeImage1",
+        "label": "Store Badge 1 Image (e.g. Google Play)",
         "multi": false
       },
       {
         "component": "aem-content",
         "valueType": "string",
-        "name": "storeLink",
-        "label": "Store Link"
+        "name": "storeLink1",
+        "label": "Store Badge 1 Link"
       },
       {
         "component": "text",
         "valueType": "string",
-        "name": "storeLabel",
-        "label": "Accessible Label (e.g. 'ANDROID APP ON Google Play')"
+        "name": "storeLabel1",
+        "label": "Store Badge 1 Accessible Label"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "storeImage2",
+        "label": "Store Badge 2 Image (e.g. App Store)",
+        "multi": false
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "storeLink2",
+        "label": "Store Badge 2 Link"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "storeLabel2",
+        "label": "Store Badge 2 Accessible Label"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "storeImage3",
+        "label": "Store Badge 3 Image (optional)",
+        "multi": false
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "storeLink3",
+        "label": "Store Badge 3 Link (optional)"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "storeLabel3",
+        "label": "Store Badge 3 Accessible Label (optional)"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "storeImage4",
+        "label": "Store Badge 4 Image (optional)",
+        "multi": false
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "storeLink4",
+        "label": "Store Badge 4 Link (optional)"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "storeLabel4",
+        "label": "Store Badge 4 Accessible Label (optional)"
       }
     ]
   },

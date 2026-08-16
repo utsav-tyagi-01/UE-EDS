@@ -1,13 +1,14 @@
 export default function decorate(block) {
   const rows = [...block.children];
 
-  // Child "app-link-item" components render as their own rows/blocks
-  // inside this container — separate those out from the container-level
-  // fields (background, phone image, title, icon, subtitle).
-  const itemRows = rows.filter((row) => row.classList.contains('app-link-item'));
-  const headerRows = rows.filter((row) => !row.classList.contains('app-link-item'));
-
-  const [bgRow, phoneRow, titleRow, iconRow, subtitleRow] = headerRows;
+  // Fixed row order authored in the block table:
+  // 1. Background image (optional)
+  // 2. Phone mockup image
+  // 3. Title text
+  // 4. Feature banner image
+  // 5. Subtitle text
+  // 6-9. Up to 4 store badge rows, each: [image cell, link cell]
+  const [bgRow, phoneRow, titleRow, iconRow, subtitleRow, ...badgeRows] = rows;
 
   // 1. Optional section background image -> block background, discard row
   if (bgRow) {
@@ -52,13 +53,15 @@ export default function decorate(block) {
     linksWrap.append(subtitleRow);
   }
 
-  // 3. Store badges (repeatable app-link-item children)
-  const badgeRow = document.createElement('div');
-  badgeRow.className = 'adl-badges';
+  // 3. Up to 4 store badges — each row has an image cell and a link cell
+  const badgeContainer = document.createElement('div');
+  badgeContainer.className = 'adl-badges';
 
-  itemRows.forEach((item) => {
-    const picture = item.querySelector('picture');
-    const link = item.querySelector('a');
+  badgeRows.forEach((row) => {
+    const picture = row.querySelector('picture');
+    const link = row.querySelector('a');
+
+    // Skip empty/unfilled badge slots (author left 3rd/4th badge blank)
     if (!picture || !link) return;
 
     const img = picture.querySelector('img');
@@ -71,15 +74,12 @@ export default function decorate(block) {
     badge.href = link.href;
     badge.target = '_blank';
     badge.rel = 'noopener noreferrer';
-    badge.setAttribute(
-      'aria-label',
-      link.textContent.trim() || item.querySelector('[data-aue-prop="storeLabel"]')?.textContent.trim() || 'Download app',
-    );
+    badge.setAttribute('aria-label', link.textContent.trim() || 'Download app');
     badge.append(picture);
-    badgeRow.append(badge);
+    badgeContainer.append(badge);
   });
 
-  linksWrap.append(badgeRow);
+  linksWrap.append(badgeContainer);
   body.append(linksWrap);
   wrapper.append(body);
 
