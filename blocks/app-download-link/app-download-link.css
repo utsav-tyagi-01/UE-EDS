@@ -69,8 +69,11 @@
 
 .app-download-link-block .adl-badges {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   gap: 12px;
+  align-self: stretch;
 }
 
 .app-download-link-block .adl-badge {
@@ -81,6 +84,7 @@
 .app-download-link-block .adl-badge img {
   height: 40px;
   width: auto;
+  max-width: 160px;
   display: block;
 }
 
