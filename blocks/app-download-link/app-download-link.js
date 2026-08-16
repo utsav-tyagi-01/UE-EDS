@@ -1,15 +1,15 @@
 export default function decorate(block) {
   const rows = [...block.children];
 
-  // Child "app-link-item" components are rendered by UE as their own
-  // rows/blocks inside this container — pull those out from the
-  // container-level fields (background, title, icon, subtitle).
+  // Child "app-link-item" components render as their own rows/blocks
+  // inside this container — separate those out from the container-level
+  // fields (background, phone image, title, icon, subtitle).
   const itemRows = rows.filter((row) => row.classList.contains('app-link-item'));
   const headerRows = rows.filter((row) => !row.classList.contains('app-link-item'));
 
-  const [bgRow, titleRow, iconRow, subtitleRow] = headerRows;
+  const [bgRow, phoneRow, titleRow, iconRow, subtitleRow] = headerRows;
 
-  // 1. Background image -> block background, then discard the row
+  // 1. Optional section background image -> block background, discard row
   if (bgRow) {
     const bgImg = bgRow.querySelector('img');
     if (bgImg) {
@@ -24,31 +24,35 @@ export default function decorate(block) {
   const wrapper = document.createElement('div');
   wrapper.className = 'adl-wrapper';
 
-  // 2. Title
-  if (titleRow) {
-    titleRow.className = 'adl-title';
-    wrapper.append(titleRow);
+  // 2. Phone mockup (left column)
+  if (phoneRow) {
+    phoneRow.className = 'adl-phone';
+    wrapper.append(phoneRow);
   }
 
-  const contentRow = document.createElement('div');
-  contentRow.className = 'adl-content';
+  // Right column: title, feature banner, subtitle, badges
+  const body = document.createElement('div');
+  body.className = 'adl-body';
 
-  // 3. Icon
+  if (titleRow) {
+    titleRow.className = 'adl-title';
+    body.append(titleRow);
+  }
+
   if (iconRow) {
     iconRow.className = 'adl-icon';
-    contentRow.append(iconRow);
+    body.append(iconRow);
   }
 
   const linksWrap = document.createElement('div');
   linksWrap.className = 'adl-links';
 
-  // 4. Subtitle ("Download the MyKia App:")
   if (subtitleRow) {
     subtitleRow.className = 'adl-subtitle';
     linksWrap.append(subtitleRow);
   }
 
-  // 5. Store badges (repeatable app-link-item children)
+  // 3. Store badges (repeatable app-link-item children)
   const badgeRow = document.createElement('div');
   badgeRow.className = 'adl-badges';
 
@@ -76,10 +80,9 @@ export default function decorate(block) {
   });
 
   linksWrap.append(badgeRow);
-  contentRow.append(linksWrap);
-  wrapper.append(contentRow);
+  body.append(linksWrap);
+  wrapper.append(body);
 
-  // Clear the block and rebuild with the new structure
   block.textContent = '';
   block.append(wrapper);
 }

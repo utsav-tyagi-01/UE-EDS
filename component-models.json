@@ -148,7 +148,14 @@
         "component": "reference",
         "valueType": "string",
         "name": "backgroundImage",
-        "label": "Background Image",
+        "label": "Section Background Image (optional)",
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "phoneImage",
+        "label": "Phone Mockup Image (left column)",
         "multi": false
       },
       {
@@ -161,7 +168,7 @@
         "component": "reference",
         "valueType": "string",
         "name": "iconImage",
-        "label": "Icon Image",
+        "label": "Feature Banner Image",
         "multi": false
       },
       {
