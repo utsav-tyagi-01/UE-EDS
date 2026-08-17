@@ -36,6 +36,7 @@ margin-left: 8.33333333%;
 /* Left column: phone mockup */
 .app-download-link-block .adl-phone {
   flex: 0 0 auto;
+  width: 33.33%;
 }
 
 .app-download-link-block .adl-phone img {
@@ -47,7 +48,7 @@ margin-left: 8.33333333%;
 /* Right column: title, feature banner, subtitle, badges — all left aligned */
 .app-download-link-block .adl-body {
   flex: 1 1 auto;
-  max-width: 560px;
+  width: 66.66%;
   display: flex;
   flex-direction: column;
   align-items: center;
