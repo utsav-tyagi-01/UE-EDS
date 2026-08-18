@@ -294,6 +294,47 @@
     ]
   },
   {
+    "id": "floating-menu",
+    "fields": [
+      {
+        "component": "text",
+        "name": "heading",
+        "label": "Menu Heading (screen-reader only)",
+        "value": "Quick Menu"
+      },
+      {
+        "component": "boolean",
+        "name": "showChat",
+        "label": "Show Chat Widget",
+        "value": true
+      }
+    ]
+  },
+  {
+    "id": "floating-menu-item",
+    "fields": [
+      {
+        "component": "text",
+        "name": "icon",
+        "label": "Icon Name",
+        "valueType": "string",
+        "description": "e.g. vehicle-solid, handle, schedule, brochure, chat"
+      },
+      {
+        "component": "text",
+        "name": "text",
+        "label": "Label",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Link",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
     "id": "fragment",
     "fields": [
       {
