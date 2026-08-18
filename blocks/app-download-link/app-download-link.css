@@ -88,13 +88,12 @@ margin-left: 8.33333333%;
 .app-download-link-block .adl-subtitle {
   color: #fff;
   margin: 0 0 12px;
-      font-size: 1.5rem;
+      font-size: 1rem;
     font-weight: 700;
 }
 
 .app-download-link-block .adl-badges {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 12px;
