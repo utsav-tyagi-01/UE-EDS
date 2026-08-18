@@ -134,10 +134,17 @@ margin-left: 8.33333333%;
 
   .app-download-link-block .adl-links {
     align-items: center;
+    margin-top: 0px;
   }
 
   .app-download-link-block .adl-title {
-    font-size: 1.3rem;
+    display: none;
+  }
+  .app-download-link-block .adl-icon {
+    margin-bottom: 0px;
+  }
+  .app-download-link-block .adl-phone{
+    width: auto;
   }
 
   .app-download-link-block .adl-badges {

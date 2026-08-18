@@ -48,6 +48,10 @@ export default function decorate(block) {
   }
 
   block.classList.add('app-download-link-block');
+   if (titleRow) {
+    titleRow.className = 'adl-title-mobile';
+    body.append(titleRow);
+  }
 
   const wrapper = document.createElement('div');
   wrapper.className = 'adl-wrapper';
