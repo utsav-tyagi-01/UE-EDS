@@ -317,7 +317,7 @@
         "value": ""
       },
       {
-        "component": "aem-content",
+        "component": "text",
         "valueType": "string",
         "name": "link",
         "label": "Link URL",
