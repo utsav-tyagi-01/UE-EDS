@@ -119,5 +119,6 @@ export default function decorate(block) {
   wrapper.append(body);
 
   block.textContent = '';
+  block.append(top);
   block.append(wrapper);
 }
