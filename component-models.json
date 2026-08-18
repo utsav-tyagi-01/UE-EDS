@@ -315,13 +315,6 @@
     "fields": [
       {
         "component": "text",
-        "name": "icon",
-        "label": "Icon Name",
-        "valueType": "string",
-        "description": "e.g. vehicle-solid, handle, schedule, brochure, chat"
-      },
-      {
-        "component": "text",
         "name": "text",
         "label": "Label",
         "valueType": "string"
@@ -330,6 +323,12 @@
         "component": "aem-content",
         "name": "link",
         "label": "Link",
+        "valueType": "string"
+      },
+      {
+        "component": "textarea",
+        "name": "iconCode",
+        "label": "Icon Code (paste SVG/icon markup)",
         "valueType": "string"
       }
     ]

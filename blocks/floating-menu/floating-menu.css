@@ -72,13 +72,19 @@
 }
 
 .floating-menu-link .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 20px;
   height: 20px;
   flex-shrink: 0;
-  background-color: currentcolor;
-  mask-size: contain;
-  mask-repeat: no-repeat;
-  mask-position: center;
+  color: currentcolor;
+}
+
+.floating-menu-link .icon svg {
+  width: 100%;
+  height: 100%;
+  fill: currentcolor;
 }
 
 .floating-menu .cta-toggle {

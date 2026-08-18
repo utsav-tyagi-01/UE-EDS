@@ -1,12 +1,12 @@
 /*
  * Floating Menu block
  * Authored in Universal Editor as a list of items, each with:
- *  - icon (text)  -> used to build the "icon-<name>" class
- *  - text (text)  -> visible label
- *  - link (aem-content) -> the <a> href
+ *  - text (text)          -> visible label
+ *  - link (aem-content)   -> the <a> href
+ *  - iconCode (textarea)  -> raw icon/SVG markup pasted by the author
  *
  * Any authored row that does not contain a link is ignored, so
- * block-level config fields (if added later) won't break rendering.
+ * block-level config fields won't break rendering.
  */
 
 function buildMenuList(block) {
@@ -18,8 +18,9 @@ function buildMenuList(block) {
     if (!link) return;
 
     const cells = [...row.children];
-    const iconName = cells[0]?.textContent.trim().toLowerCase().replace(/\s+/g, '-');
-    const label = link.textContent.trim() || cells[1]?.textContent.trim() || '';
+    const label = link.textContent.trim() || cells[0]?.textContent.trim() || '';
+    // last cell holds the pasted icon markup (textarea field)
+    const iconCode = cells[cells.length - 1]?.textContent.trim() || '';
 
     const li = document.createElement('li');
     li.className = 'floating-menu-item';
@@ -34,7 +35,11 @@ function buildMenuList(block) {
     text.textContent = label;
 
     const icon = document.createElement('span');
-    icon.className = `icon${iconName ? ` icon-${iconName}` : ''}`;
+    icon.className = 'icon';
+    if (iconCode) {
+      // eslint-disable-next-line no-unsanitized/property
+      icon.innerHTML = iconCode;
+    }
 
     a.append(text, icon);
     li.append(a);
