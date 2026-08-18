@@ -15,7 +15,9 @@
       "hero",
       "cards",
       "columns",
-      "fragment"
+      "fragment",
+      "app-download-link",
+      "floating-menu"
     ]
   },
   {
