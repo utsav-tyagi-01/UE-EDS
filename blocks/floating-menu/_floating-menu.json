@@ -9,8 +9,7 @@
             "resourceType": "core/franklin/components/block/v1/block",
             "template": {
               "name": "Floating Menu",
-              "model": "floating-menu",
-              "filter": "floating-menu"
+              "model": "floating-menu"
             }
           }
         }
@@ -24,7 +23,7 @@
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "name": "Floating Menu Item",
+              "name": "Item",
               "model": "floating-menu-item"
             }
           }
@@ -35,41 +34,34 @@
   "models": [
     {
       "id": "floating-menu",
-      "fields": [
-        {
-          "component": "text",
-          "name": "heading",
-          "label": "Menu Heading (screen-reader only)",
-          "value": "Quick Menu"
-        },
-        {
-          "component": "boolean",
-          "name": "showChat",
-          "label": "Show Chat Widget",
-          "value": true
-        }
-      ]
+      "fields": []
     },
     {
       "id": "floating-menu-item",
       "fields": [
         {
           "component": "text",
+          "valueType": "string",
           "name": "text",
-          "label": "Label",
-          "valueType": "string"
+          "label": "Item Text",
+          "value": "",
+          "required": true
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "icon",
+          "label": "Icon Code",
+          "description": "CSS icon class used for the ::before content, e.g. icon-handle, icon-schedule, icon-brochure, icon-chat, icon-vehicle-solid",
+          "value": ""
         },
         {
           "component": "aem-content",
+          "valueType": "string",
           "name": "link",
-          "label": "Link",
-          "valueType": "string"
-        },
-        {
-          "component": "textarea",
-          "name": "iconCode",
-          "label": "Icon Code (paste SVG/icon markup)",
-          "valueType": "string"
+          "label": "Link URL",
+          "value": "",
+          "required": true
         }
       ]
     }
