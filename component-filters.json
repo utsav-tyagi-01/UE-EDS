@@ -15,11 +15,16 @@
       "hero",
       "cards",
       "columns",
-      "fragment"
+      "fragment",
+      "floating-menu"
     ]
   },
   {
     "id": "app-download-link",
+    "components": []
+  },
+    {
+    "id": "floating-menu",
     "components": []
   },
   {
