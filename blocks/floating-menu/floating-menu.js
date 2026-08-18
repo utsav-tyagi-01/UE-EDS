@@ -24,8 +24,7 @@ export default function decorate(block) {
       return {
         label, icon, href, row,
       };
-    })
-    .filter((item) => item.label);
+    });
 
   // clear the authored table markup, we rebuild the original structure below
   block.textContent = '';
