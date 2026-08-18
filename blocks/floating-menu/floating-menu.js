@@ -1,3 +1,5 @@
+import { moveInstrumentation } from '../../scripts/scripts.js';
+
 /*
  * Floating Menu block
  * Authored as a repeatable table: each row = one menu item
@@ -19,7 +21,9 @@ export default function decorate(block) {
         || '#'
       ).trim();
 
-      return { label, icon, href };
+      return {
+        label, icon, href, row,
+      };
     })
     .filter((item) => item.label);
 
@@ -33,9 +37,12 @@ export default function decorate(block) {
   const list = document.createElement('ul');
   list.className = 'floating-menu-list';
 
-  items.forEach(({ label, icon, href }) => {
+  items.forEach(({
+    label, icon, href, row,
+  }) => {
     const li = document.createElement('li');
     li.className = 'floating-menu-item';
+    moveInstrumentation(row, li);
 
     const a = document.createElement('a');
     a.className = 'floating-menu-link';
